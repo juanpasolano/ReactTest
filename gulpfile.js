@@ -11,6 +11,9 @@ var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 
 var notify = function(error) {
+  console.log(error.loc);
+  console.log(error.filename);
+  console.log(error.codeFrame);
   var message = 'In: ';
   var title = 'Error: ';
 
@@ -34,7 +37,8 @@ var notify = function(error) {
 
 var bundler = watchify(browserify({
   entries: ['./src/app.jsx'],
-  transform: [reactify],
+  // transform: [["reactify", {"es6": true}]],
+  transform: ["babelify"],
   extensions: ['.jsx'],
   debug: true,
   cache: {},
@@ -47,12 +51,12 @@ function bundle() {
     .bundle()
     .on('error', notify)
     .pipe(source('main.js'))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./'));
 }
-bundler.on('update', bundle)
+bundler.on('update', bundle);
 
 gulp.task('build', function() {
-  bundle()
+  bundle();
 });
 
 gulp.task('serve', function(done) {
@@ -62,9 +66,9 @@ gulp.task('serve', function(done) {
         enable: true,
         filter: function(filePath, cb) {
           if(/main.js/.test(filePath)) {
-            cb(true)
+            cb(true);
           } else if(/style.css/.test(filePath)){
-            cb(true)
+            cb(true);
           }
         }
       },

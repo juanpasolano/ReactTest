@@ -1,12 +1,7 @@
-var React = require('react');
+import React from "react";
+import Routes from './routes';
+import Api from './util/api';
+ 
 
-var Hello = React.createClass({
-  render: function() {
-    return <h1 className="red">
-      Hello!
-    </h1>
-  }
-});
-
-var element = React.createElement(Hello, {});
-React.render(element, document.querySelector('.container'));
+// var element = React.createElement(Routes, {});
+React.render(Routes, document.querySelector('.container'));
