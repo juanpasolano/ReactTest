@@ -24,7 +24,6 @@ class TopicList extends React.Component {
 
     render() {
       return <div className="list-group">
-        TopicList
         {this.renderTopics()}
       </div>;
     }
@@ -42,7 +41,6 @@ class TopicList extends React.Component {
     }
 
     onChange(event, topics){
-      console.log(topics);
       this.setState({
         topics:topics 
       });
