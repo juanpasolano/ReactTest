@@ -14,6 +14,8 @@ var notify = function(error) {
   console.log(error.loc);
   console.log(error.filename);
   console.log(error.codeFrame);
+  console.log('---------------')
+  console.log(error);
   var message = 'In: ';
   var title = 'Error: ';
 
